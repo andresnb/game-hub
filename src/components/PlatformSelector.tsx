@@ -26,7 +26,7 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
           {selectedPlatform?.name || "Platforms"} <FaChevronDown />
         </Button>
       </MenuTrigger>
-      <MenuContent maxW={10}>
+      <MenuContent>
         {data.map((platform) => (
           <MenuItem
             onClick={() => onSelectPlatform(platform)}
@@ -35,7 +35,6 @@ const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
             {platform.name}
           </MenuItem>
         ))}
-        <MenuItem value="item3">Item3</MenuItem>
       </MenuContent>
     </MenuRoot>
   );

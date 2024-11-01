@@ -5,10 +5,16 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
+import { Platform } from "@/hooks/useGames";
 import usePlatforms from "@/hooks/usePlatforms";
 import { FaChevronDown } from "react-icons/fa";
 
-const PlatformSelector = () => {
+interface Props {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector = ({ onSelectPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
 
   if (error) return null;
@@ -17,12 +23,17 @@ const PlatformSelector = () => {
     <MenuRoot>
       <MenuTrigger asChild>
         <Button variant="subtle" size="sm">
-          Platforms <FaChevronDown />
+          {selectedPlatform?.name || "Platforms"} <FaChevronDown />
         </Button>
       </MenuTrigger>
       <MenuContent maxW={10}>
         {data.map((platform) => (
-          <MenuItem value={platform.name}>{platform.name}</MenuItem>
+          <MenuItem
+            onClick={() => onSelectPlatform(platform)}
+            value={platform.name}
+          >
+            {platform.name}
+          </MenuItem>
         ))}
         <MenuItem value="item3">Item3</MenuItem>
       </MenuContent>

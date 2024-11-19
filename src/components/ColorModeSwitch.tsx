@@ -10,7 +10,7 @@ const ColorModeSwitch = () => {
 
   return (
     <HStack>
-      <Switch colorPalette="green" onCheckedChange={toggleColorMode}>
+      <Switch onCheckedChange={toggleColorMode}>
         <Text whiteSpace="nowrap">{Capitalize(colorMode!) + " Mode"}</Text>
       </Switch>
     </HStack>
